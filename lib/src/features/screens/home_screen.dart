@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/my_app_drawer.dart';
+import '../../core/constants/app_constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,9 +12,13 @@ class HomeScreen extends StatelessWidget {
       drawer: const MyAppDrawer(),
 
       appBar: AppBar(
-        title: const Text("Student Productivity"),
+        title: Text(
+          AppConstants.appName,
+          style: const TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.bold,),
+          ),
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(20),
 
@@ -31,11 +36,11 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              const Text(
-                "Student Productivity",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+              Text(
+                AppConstants.appName,
+                style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
                 ),
               ),
 
@@ -81,10 +86,10 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              const Text(
-                "Desarrollado por: Andres Zuluaga",
-                style: TextStyle(
-                  color: Colors.grey,
+              Text(
+                "Desarrollado por: ${AppConstants.developer}",
+                style: const TextStyle(
+                color: Colors.grey,
                 ),
               ),
             ],

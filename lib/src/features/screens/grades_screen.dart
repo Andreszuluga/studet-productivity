@@ -19,6 +19,12 @@ class _GradesScreenState extends State<GradesScreen> {
   final TextEditingController grade3Controller =
       TextEditingController();
 
+  final TextEditingController grade4Controller =
+    TextEditingController();
+
+  final TextEditingController grade5Controller =
+    TextEditingController();
+
   double average = 0;
 
   String message = "";
@@ -32,9 +38,15 @@ class _GradesScreenState extends State<GradesScreen> {
 
     final double grade3 =
         double.tryParse(grade3Controller.text) ?? 0;
+    
+    final double grade4 =
+    double.tryParse(grade4Controller.text) ?? 0;
+
+    final double grade5 =
+    double.tryParse(grade5Controller.text) ?? 0;
 
     setState(() {
-      average = (grade1 + grade2 + grade3) / 3;
+      average = (grade1 + grade2 + grade3 + grade4 + grade5) / 5;
 
       if (average >= 4.5) {
         message = "Excelente estudiante";
@@ -42,8 +54,10 @@ class _GradesScreenState extends State<GradesScreen> {
         message = "Muy buen rendimiento";
       } else if (average >= 3.0) {
         message = "Buen rendimiento";
-      } else {
+      } else if (average <= 2.0) {
         message = "Necesita mejorar";
+      } else {
+        message = "Cancela semestre";
       }
     });
   }
@@ -98,6 +112,30 @@ class _GradesScreenState extends State<GradesScreen> {
               ),
             ),
 
+            const SizedBox(height: 15),
+
+            TextField(
+              controller: grade4Controller,
+              keyboardType: TextInputType.number,
+
+              decoration: const InputDecoration(
+                labelText: "Nota 4",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            TextField(
+              controller: grade5Controller,
+              keyboardType: TextInputType.number,
+
+              decoration: const InputDecoration(
+                labelText: "Nota 5",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
             const SizedBox(height: 20),
 
             SizedBox(
@@ -105,7 +143,7 @@ class _GradesScreenState extends State<GradesScreen> {
               child: ElevatedButton(
                 onPressed: calculateAverage,
                 child: const Text(
-                  "Calcular Promedio",
+                  "Calcular Nota Final",
                 ),
               ),
             ),
@@ -113,7 +151,7 @@ class _GradesScreenState extends State<GradesScreen> {
             const SizedBox(height: 25),
 
             Text(
-              "Promedio: ${average.toStringAsFixed(2)}",
+              "Nota Final: ${average.toStringAsFixed(2)}",
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
